@@ -1,0 +1,49 @@
+# REL (24 Oct 2026): packaging only. Takes the Mac bundles (ZOKKU-<NAME>-macOS.zip, ZOKKU-Hub-macOS.zip) built, tested and
+# validated in the private source repository, from the assets of a temporary pre-release of this repository, and makes
+# the tester dmg and one pkg per product with ci/mac-package.sh (the same script and guide as before; it packs, installs
+# on the runner, checks with auval and verifies the dmg). Binaries only: no source, no secret, no key. The result is an
+# artifact; the release is published by hand after checking it.
+#   gh workflow run package.yml -f inputs_tag=<tag of the input bundles> -f date=YYYY-MM-DD
+name: mac package
+
+on:
+  workflow_dispatch:
+    inputs:
+      inputs_tag:
+        description: "pre-release whose assets are the input bundles"
+        required: true
+      date:
+        description: "date in the file names (YYYY-MM-DD)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Input bundles
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p in
+          gh release download "${{ github.event.inputs.inputs_tag }}" -R "$GITHUB_REPOSITORY" -p 'ZOKKU-*-macOS.zip' -D in
+          (cd in && shasum -a 256 *.zip)
+      - name: Package
+        run: bash ci/mac-package.sh in out "" "${{ github.event.inputs.date }}"
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZOKKU-beta-macOS
+          path: |
+            out/*.dmg
+            out/*.sha256
+            out/pkgs
+            out/*.zip
+            out/logs
+          if-no-files-found: ignore
+          compression-level: 0

@@ -1,0 +1,99 @@
+﻿ZOKKU beta per Mac / ZOKKU beta for Mac
+=======================================
+
+ITALIANO
+
+Cosa c'è nel disco
+- "Installa ZOKKU.pkg": gli 11 plugin (AU, VST3, CLAP; Apple Silicon e Intel, macOS 11 o successivo).
+- "ZOKKU Hub.app": la libreria, con la prova gratuita, la licenza e gli aggiornamenti. Trascinala in Applicazioni.
+
+Perché macOS avvisa
+I file della beta NON sono firmati con un Developer ID Apple e NON sono notarizzati (serve un account Apple
+Developer, che ZOKKU non ha ancora). macOS quindi non può verificare chi li ha fatti e li blocca la prima volta.
+Non è un errore del file: lo SHA-256 del disco è nella pagina di download, puoi confrontarlo (vedi sotto).
+
+1. Installa i plugin
+   - Fai doppio clic su "Installa ZOKKU.pkg".
+   - macOS 15 Sequoia o successivo: compare «Impossibile aprire "Installa ZOKKU.pkg"...» con i pulsanti
+     "Fine" e "Sposta nel Cestino". Premi "Fine" (NON il Cestino). Apri Impostazioni di Sistema > Privacy e
+     sicurezza, scorri fino a Sicurezza e premi "Apri comunque" accanto a "Installa ZOKKU.pkg". Conferma con la
+     password del Mac o Touch ID, poi "Apri".
+   - macOS 13 e 14: clic destro (o Ctrl-clic) sul pkg > Apri > Apri.
+   - Segui le schermate (Licenza: Accetta). L'installazione chiede la password perché scrive in
+     /Library/Audio/Plug-Ins.
+2. Installa ZOKKU Hub
+   - Trascina "ZOKKU Hub.app" nella cartella Applicazioni e aprila da lì.
+   - La prima volta macOS la blocca come il pkg: "Fine", poi Impostazioni di Sistema > Privacy e sicurezza >
+     "Apri comunque" accanto a "ZOKKU Hub". Su macOS 13-14: clic destro > Apri.
+   - Alternativa dal Terminale (solo se sai cosa fa): xattr -dr com.apple.quarantine "/Applications/ZOKKU Hub.app"
+3. Prova e licenza
+   - Senza prova o licenza gli strumenti restano in silenzio e gli effetti in bypass, con un avviso nel plugin.
+   - In ZOKKU Hub premi "Start free trial" (oggi la beta usa una licenza di prova condivisa: una prova sblocca tutti
+     gli 11 plugin su questo Mac).
+4. Apri la DAW e fai una nuova scansione dei plugin. Il produttore è ZOKKU.
+   - Logic Pro: Impostazioni > Plug-in Manager > "Reimposta e ripeti scansione". Se un AU non compare, riavvia il Mac.
+
+Aggiornamenti e rimozione
+- ZOKKU Hub installa e aggiorna i plugin dal catalogo firmato della beta: ogni installazione chiede la password
+  del Mac (finestra standard di macOS; la password non passa dal Hub).
+- "Remove" in ZOKKU Hub sposta i plugin in /Library/Application Support/ZOKKU/Bundle rimossi (non li cancella).
+- Se avevi plugin con i nomi vecchi (RESONANCE, PULSE...), vengono spostati in
+  /Library/Application Support/ZOKKU/Bundle precedenti.
+- Il Hub per Mac non si aggiorna da solo: le nuove versioni del Hub si scaricano dalla pagina della beta.
+
+Controllo del file (facoltativo): nel Terminale  shasum -a 256 ~/Downloads/ZOKKU-Beta-macOS-*.dmg
+e confronta con lo SHA-256 della pagina di download.
+
+Problemi noti della beta
+- Non firmato, non notarizzato: gli avvisi qui sopra.
+- L'accesso con account nel Hub per Mac non resta salvato tra un'apertura e l'altra (Portachiavi non ancora usato).
+- Ripristino delle copie di sicurezza e canale sviluppatore: per ora solo su Windows.
+Feedback: hello@zokku.app (Mac, versione di macOS, DAW, plugin e versione, cosa hai fatto, cosa ti aspettavi).
+
+
+ENGLISH
+
+What is on the disk
+- "Installa ZOKKU.pkg" (Install ZOKKU): the 11 plug-ins (AU, VST3, CLAP; Apple silicon and Intel, macOS 11 or later).
+- "ZOKKU Hub.app": the library, with the free trial, the licence and the updates. Drag it to Applications.
+
+Why macOS warns you
+The beta files are NOT signed with an Apple Developer ID and NOT notarized (that needs an Apple Developer account,
+which ZOKKU does not have yet). macOS cannot check who made them, so it blocks them the first time.
+This is not a broken file: the disk's SHA-256 is on the download page, you can compare it (see below).
+
+1. Install the plug-ins
+   - Double-click "Installa ZOKKU.pkg".
+   - macOS 15 Sequoia or later: you see '"Installa ZOKKU.pkg" Not Opened' with "Done" and "Move to Trash".
+     Click "Done" (NOT Trash). Open System Settings > Privacy & Security, scroll to Security and click
+     "Open Anyway" next to "Installa ZOKKU.pkg". Confirm with your Mac password or Touch ID, then "Open".
+   - macOS 13 and 14: right-click (or Control-click) the pkg > Open > Open.
+   - Follow the screens (Licence: Agree). The installer asks for your password because it writes to
+     /Library/Audio/Plug-Ins.
+2. Install ZOKKU Hub
+   - Drag "ZOKKU Hub.app" to the Applications folder and open it from there.
+   - The first time macOS blocks it like the pkg: "Done", then System Settings > Privacy & Security >
+     "Open Anyway" next to "ZOKKU Hub". On macOS 13-14: right-click > Open.
+   - Terminal alternative (only if you know what it does): xattr -dr com.apple.quarantine "/Applications/ZOKKU Hub.app"
+3. Trial and licence
+   - Without a trial or a licence the instruments stay silent and the effects bypassed, with a notice in the plug-in.
+   - In ZOKKU Hub click "Start free trial" (the beta uses one shared test licence: one trial unlocks all 11 plug-ins
+     on this Mac).
+4. Open your DAW and rescan the plug-ins. The manufacturer is ZOKKU.
+   - Logic Pro: Settings > Plug-in Manager > "Reset & Rescan Selection". If an AU does not show, restart the Mac.
+
+Updates and removal
+- ZOKKU Hub installs and updates the plug-ins from the signed beta catalog: each install asks for your Mac password
+  (the standard macOS dialog; the password never goes through the hub).
+- "Remove" in ZOKKU Hub moves the plug-ins to /Library/Application Support/ZOKKU/Bundle rimossi (nothing is deleted).
+- Plug-ins under their old names (RESONANCE, PULSE...) are moved to /Library/Application Support/ZOKKU/Bundle precedenti.
+- The Mac hub does not update itself: new hub versions are downloaded from the beta page.
+
+File check (optional): in Terminal  shasum -a 256 ~/Downloads/ZOKKU-Beta-macOS-*.dmg
+and compare with the SHA-256 on the download page.
+
+Known issues of the beta
+- Not signed, not notarized: the warnings above.
+- Signing in to an account in the Mac hub is not kept between launches (Keychain not used yet).
+- Restoring backups and the developer channel: Windows only for now.
+Feedback: hello@zokku.app (Mac model, macOS version, DAW, plug-in and version, what you did, what you expected).
